@@ -22,7 +22,7 @@ function DateTimePretty(props) {
 function Video(props) {
     return (
         <div className="video">
-            <iframe src={props.url} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe title={props.url} src={props.url} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             <DateTimePretty date={props.date} />
         </div>
     )
@@ -33,7 +33,7 @@ function VideoList(props) {
 }
 
 export default function App() {
-    const [list, setList] = useState([
+    const [list] = useState([
         {
             url: 'https://www.youtube.com/embed/rN6nlNC9WQA?rel=0&amp;controls=0&amp;showinfo=0',
             date: '2022-12-19 13:24:00'
