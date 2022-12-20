@@ -2,22 +2,27 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-
 function DateTime(props) {
     return (
         <p className="date">{props.date}</p>
     )
 }
 
-function DateTimePretty(props) {
+function withDateTimePretty(Component) {
 
-    const format = "YYYY-MM-DD HH:mm:ss LT";
-
-    const date = moment(props.date, format).locale('ru').fromNow();
-    
-    return <DateTime date={date} />
-
+    return class extends React.Component {
+        state = {}
+        componentDidMount() {
+            const format = "YYYY-MM-DD HH:mm:ss LT";
+            this.setState({date: moment(this.props.date, format).locale('ru').fromNow()});
+        }
+        render() {
+            return <Component {...this.props} date={this.state.date} />
+        }
+    }
 }
+
+const DateTimePretty = withDateTimePretty(DateTime)
 
 function Video(props) {
     return (
